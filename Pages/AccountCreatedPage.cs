@@ -4,7 +4,7 @@ using AutomationExercise.Utilities;
 
 namespace AutomationExercise.Pages
 {
-    public class AccountCreatedPage:Base
+    public class AccountCreatedPage: BrowserInitialization
     {
         public AccountCreatedPage()
         {

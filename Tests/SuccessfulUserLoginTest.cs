@@ -1,16 +1,9 @@
 ﻿using AutomationExercise.Pages;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutomationExercise.Utilities;
-using System.Xml.Linq;
 
 namespace AutomationExercise.Tests
 {
-    public class SuccessfullUserLogin: Base
+    public class SuccessfullUserLogin : BrowserInitialization
     {
 
         [Test]
@@ -37,6 +30,5 @@ namespace AutomationExercise.Tests
             AccounDeletedPage accountDeletedPage = new AccounDeletedPage();
             Assert.AreEqual(accountDeletedPage.GetAccountDeletedTitle(), "ACCOUNT DELETED!");  
         }
-
     }
 }

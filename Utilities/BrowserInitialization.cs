@@ -1,13 +1,12 @@
-﻿using System;
-using NUnit.Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using WebDriverManager.DriverConfigs.Impl;
 
 namespace AutomationExercise.Utilities
 {
     
-    public class Base
+    public class BrowserInitialization
     {
         protected static IWebDriver driver; 
 
@@ -19,7 +18,13 @@ namespace AutomationExercise.Utilities
 
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             driver.Navigate().GoToUrl("https://automationexercise.com/");
-            Thread.Sleep(1000);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            IWebElement consentButton = wait.Until(driver =>
+            {
+                var element = driver.FindElement(By.CssSelector("button.fc-cta-consent"));
+                return element.Displayed ? element : null;
+            });
+            consentButton.Click();
         }
 
         [TearDown]

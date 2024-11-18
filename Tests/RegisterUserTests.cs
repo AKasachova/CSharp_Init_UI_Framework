@@ -1,16 +1,10 @@
 ﻿using AutomationExercise.Pages;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutomationExercise.Utilities;
-using System.Xml.Linq;
+using NUnit.Framework.Internal;
 
 namespace AutomationExercise.Tests
 {
-    public class RegisterUserTests:Base
+    public class RegisterUserTests : BrowserInitialization
     {
 
         [Test]
@@ -24,7 +18,6 @@ namespace AutomationExercise.Tests
 
             var loginSignupPage = new LoginPage();
             var loginSignupTitle = loginSignupPage.getSignupTitle();
-
             Assert.AreEqual(loginSignupTitle, "New User Signup!");
 
             loginSignupPage.Signup("Admin1", "Admin1@test.com");
@@ -40,7 +33,6 @@ namespace AutomationExercise.Tests
 
             var loggedInText = homePage.LoggedInText();
             Assert.AreEqual(loggedInText, "Logged in as Admin1name");
-
         }
 
         [Test]
@@ -51,12 +43,14 @@ namespace AutomationExercise.Tests
             Assert.IsTrue(activePage.Displayed, "Home Page is not displayed");
 
             homePage.ClickSignupLoginLink();
-            SignupPage signupPage = new SignupPage();
-            //exceptioin !! string signupPageTitle = signupPage.GetSignupTitle();
-            // Assert.AreEqual(signupPageTitle, "New User Signup!");
+            LoginPage loginPage = new LoginPage();
+            string loginTitle = loginPage.getSignupTitle();
+            //To ask Andrey wtf?
+            Assert.AreEqual(loginTitle, "New User Signup!");
 
-
-
+            loginPage.Signup("Aliona", "Admin2@test.com");
+            string existingEmailMessage = loginPage.GetExistingEmailMessage();
+            Assert.AreEqual(existingEmailMessage, "Email Address already exist!");
         }
     }
 }

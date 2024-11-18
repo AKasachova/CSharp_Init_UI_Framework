@@ -1,20 +1,13 @@
 ﻿using AutomationExercise.Pages;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutomationExercise.Utilities;
-using System.Xml.Linq;
 
 namespace AutomationExercise.Tests
 {
-    public class UnsuccessfulLogin : Base
+    public class UnsuccessfulLogin : BrowserInitialization
     {
 
         [Test]
-        public void UnuccessfulLoginForUserWithIncorrectCreds()
+        public void UnsuccessfulLoginForUserWithIncorrectCredentials()
         {
             var homePage = new HomePage();
             var activePage = homePage.HomePageActive();
@@ -24,15 +17,11 @@ namespace AutomationExercise.Tests
 
             var loginPage = new LoginPage();
             var loginTitle = loginPage.getLoginTitle();
-
             Assert.AreEqual(loginTitle, "Login to your account");
 
             loginPage.Login("1@we.com", "1");
-            // Explicit waiter
-
             Assert.IsNotNull(loginPage.getIncorrectLoginMessage(), "Error message is not displayed!");
 
         }
-
     }
 }

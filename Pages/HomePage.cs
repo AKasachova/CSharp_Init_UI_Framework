@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using AutomationExercise.Utilities;
 
 namespace AutomationExercise.Pages
 {
-    public class HomePage:Base
+    public class HomePage: BrowserInitialization
     {
 
         public HomePage()
@@ -39,7 +37,6 @@ namespace AutomationExercise.Pages
         { deleteAccountLink.Click(); }
         public void ClickLogoutLink()
         { logoutLink.Click(); }
-
     }
 }
 

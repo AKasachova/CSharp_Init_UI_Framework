@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using AutomationExercise.Utilities;
 
 namespace AutomationExercise.Pages
 {
-    public class LoginPage:Base
+    public class LoginPage: BrowserInitialization
     {
         public LoginPage()
         {
@@ -40,16 +38,19 @@ namespace AutomationExercise.Pages
         [FindsBy(How = How.XPath, Using = "//p[contains(text(), 'Your email or password is incorrect!')]")]
         private IWebElement incorrectLoginText;
 
+        [FindsBy(How = How.XPath, Using = "//input[@data-qa ='signup-email']/following-sibling::p")]
+        private IWebElement existingEmailMessage;
+
         public string getSignupTitle()
         { return signupTitle.Text; }
         public string getLoginTitle()
         { return loginTitle.Text; }
         public IWebElement getIncorrectLoginMessage()
         { return incorrectLoginText; }
-        public void Signup(string name, string password)
+        public void Signup(string name, string email)
         {
             newUserName.SendKeys(name);
-            newUserEmail.SendKeys(password);
+            newUserEmail.SendKeys(email);
             signupButton.Click(); 
         }
         public void Login(string email, string password)
@@ -58,5 +59,8 @@ namespace AutomationExercise.Pages
             userPassword.SendKeys(password);
             loginButton.Click();
         }
+        public string GetExistingEmailMessage()
+        { return existingEmailMessage.Text; }
+            
     }
 }

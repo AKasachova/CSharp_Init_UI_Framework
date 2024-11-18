@@ -4,7 +4,7 @@ using AutomationExercise.Utilities;
 
 namespace AutomationExercise.Pages
 {
-    public class AccounDeletedPage : Base
+    public class AccounDeletedPage : BrowserInitialization
     {
         public AccounDeletedPage()
         {

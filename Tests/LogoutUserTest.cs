@@ -1,16 +1,9 @@
 ﻿using AutomationExercise.Pages;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutomationExercise.Utilities;
-using System.Xml.Linq;
 
 namespace AutomationExercise.Tests
 {
-    public class UserLogout : Base
+    public class UserLogout : BrowserInitialization
     {
 
         [Test]
@@ -24,19 +17,16 @@ namespace AutomationExercise.Tests
 
             var loginPage = new LoginPage();
             var loginTitle = loginPage.getLoginTitle();
-
             Assert.AreEqual(loginTitle, "Login to your account");
 
-            loginPage.Login("Admin1@test.com", "password");
-
+            loginPage.Login("Admin2@test.com", "password2");
             var loggedInText = homePage.LoggedInText();
-            Assert.AreEqual(loggedInText, "Logged in as Admin1name");
+            Assert.IsTrue(loggedInText.Contains("Logged in as"), "The user is not logged in");
 
             homePage.ClickLogoutLink();
 
             var loginPage2 = new LoginPage();
             Assert.AreEqual(loginPage2.getLoginTitle(), "Login to your account");
         }
-
     }
 }

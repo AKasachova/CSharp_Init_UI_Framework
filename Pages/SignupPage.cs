@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace AutomationExercise.Pages
 {
-    public class SignupPage : Base
+    public class SignupPage : BrowserInitialization
     {
         public SignupPage()
         {
