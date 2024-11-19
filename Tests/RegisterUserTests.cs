@@ -45,7 +45,6 @@ namespace AutomationExercise.Tests
             homePage.ClickSignupLoginLink();
             LoginPage loginPage = new LoginPage();
             string loginTitle = loginPage.getSignupTitle();
-            //To ask Andrey wtf?
             Assert.AreEqual(loginTitle, "New User Signup!");
 
             loginPage.Signup("Aliona", "Admin2@test.com");

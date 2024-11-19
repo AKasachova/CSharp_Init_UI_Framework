@@ -16,7 +16,7 @@ namespace AutomationExercise.Utilities
             new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
             driver = new ChromeDriver();
 
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl("https://automationexercise.com/");
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
             IWebElement consentButton = wait.Until(driver =>
